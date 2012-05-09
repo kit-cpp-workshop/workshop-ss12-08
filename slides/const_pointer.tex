@@ -1,0 +1,34 @@
+\section{const}
+\begin{frame}[fragile]{const variablen}
+
+\begin{block}{const für Konstanten}
+	\begin{lstlisting}[language=C++]
+		const int array_size = 42;
+		int array[array_size];
+		...
+	\end{lstlisting}
+\end{block}
+
+\end{frame}
+\begin{frame}[fragile]{const funktionsargumente}
+
+\begin{block}{const als Veränderungsschutz}
+	\begin{lstlisting}[language=C++]
+		void drucker(int arg)
+		{
+			std::cout << arg << std::endl;
+		}
+		void testfun(int *arg)
+		{
+			*arg = 42;
+		}
+		void myfun(const int *arg)
+		{
+			*arg = 99; // wird nicht kompiliert
+			testfun(arg); // wird nicht kompiliert
+			drucker(*arg); // erlaubt
+		}
+	\end{lstlisting}
+\end{block}
+
+\end{frame}
