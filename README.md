@@ -1,8 +1,8 @@
-# Workshop 18. Mai 2012
+# Workshop DD. MMMM 2012
 
 ## Inhalt
 
-Im 4. Workshop wird "const correctness" behandelt.
+Im XY. Workshop wird "const correctness" behandelt.
 
 ### Folien zum Vortrag
 
