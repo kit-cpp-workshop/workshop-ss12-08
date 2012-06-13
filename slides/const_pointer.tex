@@ -3,9 +3,9 @@
 
 \begin{block}{const für Konstanten}
 	\begin{lstlisting}[language=C++]
-		const int array_size = 42;
-		int array[array_size];
-		...
+  const int array_size = 42;
+  int array[array_size];
+  ...
 	\end{lstlisting}
 \end{block}
 
@@ -13,22 +13,42 @@
 \begin{frame}[fragile]{const funktionsargumente}
 
 \begin{block}{const als Veränderungsschutz}
+\begin{small}
 	\begin{lstlisting}[language=C++]
-		void drucker(int arg)
-		{
-			std::cout << arg << std::endl;
-		}
-		void testfun(int *arg)
-		{
-			*arg = 42;
-		}
-		void myfun(const int *arg)
-		{
-			*arg = 99; // wird nicht kompiliert
-			testfun(arg); // wird nicht kompiliert
-			drucker(*arg); // erlaubt
-		}
+void drucker(int arg)
+{
+  std::cout << arg << std::endl;
+}
+void testfun(int *arg)
+{
+  *arg = 42;
+}
+void myfun(const int *arg)
+{
+  *arg = 99; // wird nicht kompiliert
+  testfun(arg); // wird nicht kompiliert
+  drucker(*arg); // erlaubt
+}
+	\end{lstlisting}
+	\end{small}
+\end{block}
+
+\end{frame}
+\begin{frame}[fragile]{const funktionsargumente}
+
+\begin{block}{const als Absicherung}
+	\begin{lstlisting}[language=C++]
+void druckeRechnung(const Rechnung * rech)
+{
+  std::cout << rech->menge << std::endl;
+  rech->menge++; // wird nicht kompiliert
+}
+void setzeRechnung(Rechnung * rech)
+{
+  rech->menge = 100;
+}
 	\end{lstlisting}
 \end{block}
+
 
 \end{frame}
