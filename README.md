@@ -1,14 +1,18 @@
-# Workshop DD. MMMM 2012
+# Workshop 22. Juni 2012
 
 ## Inhalt
 
-Im XY. Workshop wird "const correctness" behandelt.
+Im 8. Workshop geht es um:
+ * "const correctness"
+ * Templates
+ * Algorithmische Komplexitätstheorie
+ * Die STL-Datenstrukturen `vector` und `list` sowie Iteratoren
 
 ### Folien zum Vortrag
 
 Die Vortragsfolien stehen als [PDF](URL) zum Download bereit. Außerdem liegt der LaTeX-Quellcode zu den Folien im Ordner `slides`.
 
-###Screencast
+### Screencast
 
 Ein Screencast des Vortrags wird nach dem Workshop an dieser Stelle verlinkt.
 
