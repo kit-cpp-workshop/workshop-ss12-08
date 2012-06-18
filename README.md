@@ -22,7 +22,16 @@ Sendet, nachdem ihr alle Aufgaben abgearbeitet habt, einen Pull-Request an das W
 
 ### Aufgabe 1: Fibonacci-LUT
 
-Erweitere deine Fibonacci-LUT Klasse aus dem 2. workshop.
+Erweitere deine Fibonacci-LUT Klasse aus dem 2. Workshop.
 Alle Methoden die (aus der Perspektive eines Nutzers einer Instanz der Klasse) die Instanz nicht verändern, sollen const sein.
 Ausserdem soll es dem Nutzer ermöglicht werden, direkt auf die LUT zuzugreifen, OHNE dass die Tabelle im public: bereich ist, oder der Nutzer die Tabelle verändern kann.
 
+### Aufgabe 2: Eine generische Look-Up-Table
+
+Implementiere eine Look-Up-Table die beliebige "Dinge" speichern kann und sie dabei einem Schlüsselwert zuordnet. Anhand dieses Schlüsselwertes soll es später möglich sein, die "Dinge" wieder aus der Look-Up-Table zu entfernen.
+
+Im Ordner `ObjLUT` liegt eine (minimale) vorgegebene Schnittstelle, diese soll als Ausgangspunkt für die Implementierung verwendet werden.
+
+### (Bonus-)Aufgabe 3: Schach
+
+Sofern dein Schachprogramm mit GUI noch nicht fertig ist, kannst du daran weiterarbeiten.
