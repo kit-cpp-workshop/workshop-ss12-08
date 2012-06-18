@@ -1,0 +1,62 @@
+\section{Komplexitätstheorie}
+
+\begin{frame}{Vergleich von Algorithmen}
+	\begin{block}{Problem}
+		Nach welchen Kriterien vergleicht man Algorithmen?
+	\end{block}
+
+	\pause
+
+	\begin{itemize}
+		\item Rechenzeit
+		\item Speicherbedarf
+		\item I/O-Bandbreitenbedarf
+		\item (Parallelisierbarkeit)
+	\end{itemize}
+
+	\pause
+	
+	Das sind alles von der ausführenden Maschine abhängige Metriken!
+	
+	Ziel: Ein davon unabhängiger Bewertungsmaßstab \\
+	\footnotesize{(Mit dem ferner Beweise und theoretische Analysen möglich sind)}
+\end{frame}
+
+\begin{frame}{Big O: Das algorithmische Komplexitätsmaß}
+	\begin{block}{Landau-Symbole}
+		\begin{itemize}
+			\item Beschreiben das asymptotische Verhalten 
+			\item Reduktion auf das Wesentliche
+			\item Vernachlässigung konstanter Faktoren und asymptotisch unbedeutender Terme
+		\end{itemize}
+		
+		\pause
+		
+		\begin{itemize}
+			\item $f \in \mathcal{O}(g)$ : $f$ wächst asymptotisch höchstens so schnell wie $g$
+			\item $f \in \Theta(g)$ : $f$ wächst asymptotisch genau so schnell wie $g$
+			\item $f \in \Omega(g)$ : $f$ wächst asymptotisch mindestens so schnell wie $g$
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Landau-Symbole: Anwendung und Beispiele}
+	\begin{block}{Notation}
+		\begin{itemize}
+			\item Landau-Symbole beschreiben eigentlich Mengen von Funktionen
+			\item \enquote{Korrekte} Element-Notation: $f \in \mathcal{O}(g)$
+			\item Verbreitete Notation: $f = \mathcal{O}(g)$
+		\end{itemize}
+	\end{block}
+	
+	\pause
+	
+		Meist Angabe der Zeitkomplexität in Abhängigkeit der Eingabegröße, aber auch für andere (kritischen) Ressourcen (Speicher, Bandbreite etc.) einsetzbar. Beispiele (Eingabegröße: $n$):
+		\begin{itemize}
+			\item Arrayzugriffe: $\Theta(1)$
+			\item Binäre Suche: $\mathcal{O}(log(n))$
+			\item Iterieren durch eine Liste: $\Theta(n)$
+			\item Sortieren (vergleichsbasiert): $\Omega(n*log(n))$
+		\end{itemize}
+\end{frame}
+
