@@ -15,21 +15,99 @@
 \subsection{sequence containers}
 
 \begin{frame}[fragile]{Überblick}
-	Auflistung: Container + Adapter
+	Die STL stellt für die geordnete Speicherung von \enquote{Dingen} drei Containertypen bereit:
+	\begin{itemize}
+		\item \verb|vector|
+		\item \verb|list|
+		\item \verb|deque|
+	\end{itemize}
+	
+	\pause
+	
+	Außerdem gibt es noch drei Adapter-Typen, die auf Basis dieser Container arbeiten:
+	\begin{itemize}
+		\item \verb|queue|
+		\item \verb|priority_queue|
+		\item \verb|stack|
+	\end{itemize}
+	
+	\pause
+	
+	Diese werden in einem der nächsten Workshops besprochen.
 \end{frame}
 
-\begin{frame}[fragile]{Die einzelnen Container}
-	Kurzvorstellung d. Container
+\begin{frame}[fragile]{Gemeinsame Eigenschaften/Funktionalität}
+	\begin{itemize}
+		\item Speichern Sequenzen von \enquote{Dinge}
+		\begin{itemize}
+			\item In der vorgegebenen Reihenfolge (Überraschung!)
+			\pause
+			\item Dynamisch, sie passen ihre Größe den Anforderungen an
+		\end{itemize}
+	\end{itemize}
+	
+	\pause
+	
+	Funktionsumfang:
+	\begin{itemize}
+		\item Zugriff über Iteratoren (mehr dazu später)
+		\begin{itemize}
+			\item Sowohl vorwärts als auch rückwärts
+			\item Generell je Inkrement in $\mathcal{O}(1)$
+		\end{itemize}
+		\item Elementzählung in $\mathcal{O}(1)$
+		\item Elementzugriff
+		\begin{itemize}
+			\item Anfang und Ende in $\mathcal{O}(1)$
+			\item \verb|vector| und \verb|deque| auch Wahlfrei (in $\mathcal{O}(1)$)
+		\end{itemize}
+		\item Modifikation: Einfügen, löschen und leeren
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{Gemeinsame Eigenschaften}
-	Liste v. Elementen (-> Ordnung)
-	Operationen, Komplexität
+\begin{frame}[fragile, allowframebreaks]{Container}
+	\begin{block}{\texttt{vector}}
+		\begin{itemize}
+			\item Array-basiert
+			\begin{itemize}
+				\item[+] Cache-effizient
+				\item[+] (Direkt-)Zugriffe sehr schnell möglich: $\mathcal{O}(1)$
+				\item Wachstum erfordert Kopiervorgänge!
+				\item[-] Einfügen/Entfernen ist teuer: $\mathcal{O}(n)$ (!)
+					\begin{itemize}
+						\item Ausnahme: Am Ende des \verb|vector|s (mit \verb|push_back|, \verb|pop_back|): $\mathcal{O}(1)$
+					\end{itemize}
+			\end{itemize}
+		\end{itemize}
+		
+		TODO: Illustration Vector-Insert
+	\end{block}
+	
+	\begin{block}{\texttt{list}}
+	
+	\end{block}
+	
+	\begin{block}{\texttt{deque}}
+	
+	\end{block}
 \end{frame}
 
-\begin{frame}{Besonderheiten}
-	Spezialitäten der Interfaces
+\begin{frame}{Hilfe zur Selbsthilfe}
+	Der C++-Standard ist die offizielle Referenz. 
+	
+	Die unten verlinkte Dokumentation ist in der Praxis aber
+	\begin{itemize}
+		\item mehr als ausreichend
+		\item außerdem übersichtlich strukturiert
+		\item bietet umfangreiche Erläuterungen
+		\item und jede Menge Beispiele
+	\end{itemize}
+	
+	\begin{center}
+		\url{http://www.cplusplus.com/reference/stl/}
+	\end{center}
 \end{frame}
+
 
 \subsection{Iteratoren}
 
