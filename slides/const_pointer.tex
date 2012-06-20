@@ -3,13 +3,37 @@
 
 \begin{block}{const für Konstanten}
 	\begin{lstlisting}[language=C++]
-  const int array_size = 42;
-  int array[array_size];
-  ...
+  const int i = 42;
+  i = 99; // wird nicht kompiliert
+  int j = i+5; // ist erlaubt
 	\end{lstlisting}
 \end{block}
 
 \end{frame}
+
+\begin{frame}[fragile]{const pointer}
+
+\begin{block}{const pointer}
+\begin{small}
+	\begin{lstlisting}[language=C++]
+// Pointer zu einem konstanten MyClass Objekt
+const MyClass * blub;
+MyClass const * blub2;
+const MyClass const * blub3;
+
+// konstanter Pointer zu einem MyClass Objekt
+MyClass * const blub4;
+
+// konstanter Pointer zu einem konstanten MyClass Objekt
+MyClass const * const blub5; 
+const MyClass * const blub6; 
+const MyClass const * const blub7;
+	\end{lstlisting}
+	\end{small}
+\end{block}
+
+\end{frame}
+
 \begin{frame}[fragile]{const funktionsargumente}
 
 \begin{block}{const als Veränderungsschutz}
@@ -38,12 +62,12 @@ void myfun(const int *arg)
 
 \begin{block}{const als Absicherung}
 	\begin{lstlisting}[language=C++]
-void druckeRechnung(const Rechnung * rech)
+void druckeRechnung(const Rechnung& rech)
 {
   std::cout << rech->menge << std::endl;
   rech->menge++; // wird nicht kompiliert
 }
-void setzeRechnung(Rechnung * rech)
+void setzeRechnung(Rechnung& rech)
 {
   rech->menge = 100;
 }

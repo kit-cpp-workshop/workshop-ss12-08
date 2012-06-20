@@ -2,10 +2,33 @@
 \begin{frame}[fragile]{const member funktionen}
 
 \begin{block}{const als Absicherung}
-  \begin{tiny}
-  \lstinputlisting[language=C++]{test.cpp}
-  \end{tiny}
+  \lstinputlisting[basicstyle=\tiny]{test.cpp}
 \end{block}
 
+\end{frame}
+
+\begin{frame}[fragile]{const member funktionen}
+
+\begin{block}{const als Veränderungsschutz}
+\begin{small}
+	\begin{lstlisting}[language=C++]
+void drucker(const MyClass& arg)
+{
+  std::cout << arg.getInt() << std::endl;
+}
+void testfun(const MyClass& arg)
+{
+  arg.setInt(99); // wird nicht kompiliert
+}
+void myfun()
+{
+  MyClass pObj;
+  pObj.setInt(42);
+  testfun(pObj);
+  drucker(pObj);
+}
+	\end{lstlisting}
+	\end{small}
+\end{block}
 
 \end{frame}
