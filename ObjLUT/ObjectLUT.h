@@ -122,7 +122,7 @@ namespace workshop {
                  *
                  * @return the count of key-value mappings stored by this instance
                  */
-                size_t size() const;
+                std::size_t size() const;
         };
     
     } // anonymous namespace
