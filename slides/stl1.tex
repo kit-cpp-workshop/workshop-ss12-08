@@ -2,13 +2,39 @@
 
 \subsection{Überblick}
 
-\begin{frame}{Standard Template Library}
-	Kurze Intro in die STL:
-	Design-Grundsätze
-	Funktionsumfang
+\begin{frame}[fragile]{Standard Template Library}
+	Aufbau: building blocks
 	
-	% Robert, wärst du so freundlich?
+	\vspace{1em}
 	
+	\begin{itemize}
+		\item containers, adaptors
+		\item streams
+		\item algorithms
+		\item functional programming
+		\item helpers (e.g. \verb|reference_wrapper|)
+		\item metaprogramming support
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Standard Template Library}
+	Alexander Stepanov, Mitbegründer des generic programming und der STL:
+	{\tiny aus: Forward to \enquote{STL Tutorial and Reference Guide, Second Edition} }
+	
+	\begin{block}{Fundamental ideas behind STL}
+		\begin{itemize}
+			\item Generic programming
+			\item Abstractness without loss of efficiency
+			\item Von Neumann computational model (pointers)
+			\item Value semantics (whole-part ownership)
+		\end{itemize}
+	\end{block}
+	
+	\pause
+	
+	\vspace{2em}
+	\enquote{Fun fact} \emph{;)}\\
+	STL $\subset$ Standard-Bibliothek
 \end{frame}
 
 
