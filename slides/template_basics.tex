@@ -1,0 +1,27 @@
+\section{template basics}
+
+
+\subsection{Über templates}
+
+\begin{frame}[fragile]{Was sind templates?}
+	templates sind: Schablonen für Klassen und Funktionen
+	
+	\pause
+	
+	\begin{lstlisting}
+   int max(int p0, int p1) { return (p0>p1) ? (p0) : (p1); }
+ short max(short, short);
+double max(double, double);
+MyType max(MyType, MyType);
+	\end{lstlisting}
+	
+	\pause
+	
+	\begin{lstlisting}
+class MyRingbuffer_int { int* p; /*...*/ };
+class MyRingbuffer_short;
+class MyRingbuffer_double;
+class MyRingbuffer_MyType;
+	\end{lstlisting}
+\end{frame}
+
