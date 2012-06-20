@@ -12,9 +12,6 @@
 
 namespace workshop {
 
-    typedef int key_t;
-    typedef int value_t;
-
     // Please do NOT modify the predefined part of this class/interface
     // However, for your implementation you will need (most likely) require to
     // extend this predefined template with your private implementation details.
@@ -29,6 +26,7 @@ namespace workshop {
      * the NULL result representing "no match". In those cases, the methods
      * containsKey() and containsValue() might be used.
      */
+    template < typename key_t, typename value_t >
     class ObjectLUT {
         public:
             /**
