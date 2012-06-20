@@ -15,10 +15,12 @@
 void drucker(const MyClass& arg)
 {
   std::cout << arg.getInt() << std::endl;
-}
-void testfun(const MyClass& arg)
-{
   arg.setInt(99); // wird nicht kompiliert
+}
+void testfun(MyClass& arg)
+{
+  std::cout << arg.getInt() << std::endl;
+  arg.setInt(99);
 }
 void myfun()
 {
