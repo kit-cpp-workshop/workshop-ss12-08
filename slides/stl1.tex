@@ -55,41 +55,84 @@
 			\item Sowohl vorwärts als auch rückwärts
 			\item Generell je Inkrement in $\mathcal{O}(1)$
 		\end{itemize}
+		\pause
 		\item Elementzählung in $\mathcal{O}(1)$
+		\pause
 		\item Elementzugriff
 		\begin{itemize}
 			\item Anfang und Ende in $\mathcal{O}(1)$
 			\item \verb|vector| und \verb|deque| auch Wahlfrei (in $\mathcal{O}(1)$)
 		\end{itemize}
+		\pause
 		\item Modifikation: Einfügen, löschen und leeren
 	\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile, allowframebreaks]{Container}
-	\begin{block}{\texttt{vector}}
-		\begin{itemize}
-			\item Array-basiert
-			\begin{itemize}
-				\item[+] Cache-effizient
-				\item[+] (Direkt-)Zugriffe sehr schnell möglich: $\mathcal{O}(1)$
-				\item Wachstum erfordert Kopiervorgänge!
-				\item[-] Einfügen/Entfernen ist teuer: $\mathcal{O}(n)$ (!)
-					\begin{itemize}
-						\item Ausnahme: Am Ende des \verb|vector|s (mit \verb|push_back|, \verb|pop_back|): $\mathcal{O}(1)$
-					\end{itemize}
-			\end{itemize}
-		\end{itemize}
-		
+\begin{frame}[fragile]{Container: \texttt{vector}}
+	\begin{block}{Abbildung: Struktur}
 		TODO: Illustration Vector-Insert
 	\end{block}
+
+	\begin{itemize}
+		\item Array-basiert
+		\pause
+		\begin{itemize}
+			\item[+] Cache-effizient
+			\item[+] (Direkt-)Zugriffe sehr schnell möglich: $\mathcal{O}(1)$
+			\pause
+			\item Wachstum erfordert Kopiervorgänge!
+			\item[-] Einfügen/Entfernen ist teuer: $\mathcal{O}(n)$ (!)
+			\begin{itemize}
+				\item Ausnahme: Am Ende des \verb|vector|s (mit \verb|push_back|, \verb|pop_back|): $\mathcal{O}(1)$
+			\end{itemize}
+		\end{itemize}
+		\pause
+		\item Vor allem geeignet für Aufgaben mit wahlfreiem Zugriff und wenigen Änderungsoperationen die nicht am Ende stattfinden.
+	\end{itemize}
+\end{frame}
 	
-	\begin{block}{\texttt{list}}
-	
+\begin{frame}[fragile]{Container: \texttt{list}}
+	\begin{block}{Abbildung: Struktur}
+		TODO: Illustration DLL-Insert
+	\end{block}
+
+	\begin{itemize}
+		\item Zugrundeliegende Datenstruktur: Doppelt verlinkte Liste
+		\pause
+		\begin{itemize}
+			\item[-] Schlechte Cache-Effizienz (Container können unzusammenhängend im Speicher liegen)
+			\item[-] Kein Direktzugriff! Über Iteration in $\mathcal{O}(n)$ (!)
+			\pause
+			\item[+] Einfügen/Entfernen ist (bei gegebener Position) sehr schnell: $\mathcal{O}(1)$
+			\item[+] Verschieben von Elementen in eine andere \verb|list| ist (in zwei Fällen) sehr schnell: \verb|splice| in $\mathcal{O}(1))$
+			\item Bietet einige Zusatzmethoden zum sortieren und filtern
+		\end{itemize}
+		\pause
+		\item Vor allem geeignet für Algorithmen mit einer großen Anzahl nichttrivialer Listenmodifikationen, solange kein wahlfreier Zugriff erforderlich ist.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Container: \texttt{deque}}
+	\begin{block}{Abbildung: Struktur}
+		TODO: Illustration deque
 	\end{block}
 	
-	\begin{block}{\texttt{deque}}
-	
-	\end{block}
+	\begin{itemize}
+		\item Datenstruktur: Array-basiert ähnlich wie \verb|vector|, aber in kleine Blöcke unterteilt
+		\pause
+		\begin{itemize}
+			\item[+] Cache-Effizienz: Zusammenhängende Blöcke $\rightarrow$ vermutlich gut
+			\item[+] Direktzugriff: $\mathcal{O}(1)$
+			\pause
+			\item Wieder: Wachstum erfordert Kopieroperationen
+			\item[-] Beliebiges Einfügen/Entfernen: $\mathcal{O}(n)$ (wie bei \verb|vector|)
+			\begin{itemize}
+				\item Ausnahme: An Anfang oder Ende der \verb|deque| (\verb|push|/\verb|pop_front|/\verb|back|): $\mathcal{O}(1)$
+			\end{itemize}
+		\end{itemize}
+		\pause
+		\item \verb|deque| ist etwas flexibler als \verb|vector|, hat aber auch einen größeren Verwaltungsoverhead. (Konstante Faktoren!)
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Hilfe zur Selbsthilfe}
