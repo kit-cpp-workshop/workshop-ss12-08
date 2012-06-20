@@ -28,7 +28,7 @@ namespace workshop {
      */
     namespace /* anonymous for implicit internal linkage of template (class member) functions*/ {
     
-    template < typename key_t, typename value_t >
+        template < typename key_t, typename value_t >
         class ObjectLUT {
             public:
                 /**
