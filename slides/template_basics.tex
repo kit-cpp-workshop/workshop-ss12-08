@@ -4,16 +4,12 @@
 \subsection{Über templates}
 
 \begin{frame}[fragile]{Was sind templates?}
-	templates sind: Schablonen für Klassen und Funktionen
+	templates sind: Vorlagen (Schablonen) für Klassen und Funktionen
 	
 	\pause
+	\vspace{2em}
 	
-	\begin{lstlisting}
-   int max(int p0, int p1) { return (p0>p1) ? (p0) : (p1); }
- short max(short, short);
-double max(double, double);
-MyType max(MyType, MyType);
-	\end{lstlisting}
+	\lstinputlisting[linerange=begin-max_schablone]{cpp-code/function-templates.cpp}
 	
 	\pause
 	
@@ -25,3 +21,214 @@ class MyRingbuffer_MyType;
 	\end{lstlisting}
 \end{frame}
 
+
+\begin{frame}{Zum Einstellen}
+	templates sind
+	\begin{itemize}
+		\item mächtiger als der Präprozessor
+		\item schwieriger als der Rest von C++ zusammen
+	\end{itemize}
+	
+	\pause
+	\vspace{1em}
+	Beides nicht ganz wahr!
+	\begin{itemize}
+		\item man kann ganz wenige Dinge nur mit dem Präprozessor tun (und viele Dinge nur mit templates)
+		\item die grundlegende Verwendung von templates ist einfach
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Für den Hinterkopf}
+	Wichtig bei templates ist:
+	
+	\begin{itemize}
+		\item templates erzeugen Klassen und Funktionen
+		\item aber keinen echten Quelltext
+		\item templates werden unmittelbar vor der Übersetzung verarbeitet
+		\item Fokus: statische Typsicherheit und Umgang mit Typen
+	\end{itemize}
+\end{frame}
+
+
+\subsection{Essentials zur Verwendung}
+
+\begin{frame}[t]{Funktions-templates: Beispiel}
+% später: type deduction
+
+
+	Ziel: Anhand einer Vorlage all diese Funktionen erzeugen \emph{lassen}.\\
+	D.h.: Vorlage + Typ $\implies$ Funktion
+	
+	\vspace{2em}
+	
+	\onslide*<+> { \lstinputlisting[linerange=begin-max_schablone, commentstyle=\none]{cpp-code/function-templates.cpp} }
+	\lstset{morecomment=[l]template}
+	\onslide*<+> { \lstinputlisting[linerange=begin-max_template, commentstyle=\none]{cpp-code/function-templates.cpp} }
+	\lstset{deletecomment=[l]template}
+	\onslide*<+-> { \lstinputlisting[linerange=begin-max_template, commentstyle=\none]{cpp-code/function-templates.cpp} }
+\end{frame}
+
+\begin{frame}[fragile]{Funktions-templates: Syntax}
+	\begin{block}{Definition eines Funktions-templates}
+		\lstinputlisting[linerange=max_template-max_template_short, firstnumber=0]{cpp-code/function-templates.cpp}
+	\end{block}
+	
+	Ein template liefert dem Compiler eine Konstruktionsvorschrift:\\
+	Vorlage + Parameter $\implies$ Funktion
+	
+	\pause
+	\vspace{1em}
+	
+	\begin{block}{Veranschaulichung: int als Parameter T}
+		\lstinputlisting[linerange=no_template-no_template_end, firstnumber=last]{cpp-code/function-templates.cpp}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Verwendung von Funktions-templates}
+	Ein Funktions-template ist eine Vorlage, und keine Funktion! (selbes gilt für class templates)\\
+	$\implies$ es bedarf des Konstruktionsschrittes \emph{function template} $\rightarrow$ \emph{function}\\
+	Nennt sich: Instanziierung (des Funktions-templates)
+	
+	\vspace{1em}
+	
+	Warum nicht gleich für alle möglichen Parameter instanziieren?\\
+	\pause
+	\alert<+>{code bloat!}
+	
+	\uncover<+->
+	{
+		\vspace{1em}
+		Also nur Instanziieren, wenn tatsächlich benötigt. Funktioniert wie?
+	}
+	
+	\uncover<+->
+	{
+		\vspace{1em}
+		Geschieht \alert{automagisch bei der Verwendung}! Hier liegt der Unterschied zu macros usw.!
+	}
+\end{frame}
+
+\begin{frame}{Implizite Instanziierung}
+	\begin{block}{Aufrufen einer template-Funktion}
+		\lstinputlisting[linerange=call0-call1, firstnumber=0]{cpp-code/function-templates.cpp}
+	\end{block}
+	
+	\pause
+	
+	\begin{itemize}
+		\item Compiler erkennt: hier wird eine Schablone benannt und eine Instanz benötigt. \\
+		\item $\implies$ Compiler instanziiert das template, Funktionsaufruf wird mit Instanz verbunden.
+		\item Das fertige Programm wird an dieser Stelle die entstandene Funktion aufrufen.
+	\end{itemize}
+	
+	\pause
+	
+	\lstinputlisting[linerange=call1-, firstnumber=last]{cpp-code/function-templates.cpp}
+	Eine andere Funktion wird erzeugt!
+	
+	Es wird nur eine Instanz je Satz von template-Parametern erzeugt pro \emph{translation unit} und nicht für jeden Aufruf eine.
+\end{frame}
+
+\begin{frame}[fragile]{Sichtbarkeit und Instanziierung}
+	\alert<+>{Bisher:}
+	\begin{itemize}
+		\item kann eine Funktion aufrufen, wenn die Deklaration vorhanden ist
+		\item die Funktion kann (external linkage) in einer anderen translation unit definiert sein
+	\end{itemize}
+	
+	\onslide<+->
+	\vspace{0.5em}
+	
+	\alert<.>{templates:}
+	\begin{itemize}
+		\item Instanziierung erfordert vorherige \emph{Definition}!
+		\item $\implies$ Funktionsaufrufe von noch nicht instanziierten templates erfordern die Definition (den Körper) der Funktion weiter oben in \emph{derselben} translation unit
+	\end{itemize}
+	
+	\onslide<+->
+	\vspace{0.5em}
+	\begin{description}[leftmargin=3.5em]
+		\item[\emph{common solution}] templates inkl. Definitionen in die Header!\\
+		\item[\emph{Problem}] One definition rule {\tiny (darf nicht mehr als eine Definition im gesamten Programm haben) }\\
+		\item[\emph{Umgehung}] internal linkage (\verb|static|) oder \verb|inline|
+	\end{description}
+\end{frame}
+
+\begin{frame}{templates \& headers}
+	\begin{columns}[t]
+		\column{0.5\textwidth}
+			\emph{header.h}
+			\lstinputlisting[linerange=header-header_end]{cpp-code/template-header.cpp}
+		
+		\pause
+		\column{0.5\textwidth}
+			\emph{foobar.cpp}
+			\lstinputlisting[linerange=foobar.cpp-main.cpp, firstnumber=0]{cpp-code/template-header.cpp}
+			\pause
+			\emph{main.cpp}
+			\lstinputlisting[linerange=main.cpp-, firstnumber=0]{cpp-code/template-header.cpp}
+	\end{columns}
+\end{frame}
+
+
+\subsection{Mehr zu templates}
+
+\begin{frame}[fragile]{template parameters}
+	Die template-declaration enthält wie Funktions-Deklarationen eine Menge von Parametern:
+	\begin{lstlisting}
+		void foo(int, double, MyType, int);
+		
+		template < typename T, typename MyTemplateParam,
+		           class x >
+		void bar();
+	\end{lstlisting}
+	
+	Im Kontext einer template-declaration sind \verb|typename| und \verb|class| semantisch identisch.
+	
+	\pause
+	
+	Ein template-Parameter empfängt bei der Instanziierung entweder
+	\begin{itemize}
+		\item einen Typen, d.h. den Namen einer \verb|class|, \verb|struct|, \verb|union| $\Rightarrow$ template type-parameter
+		\item oder einen Wert ähnlich wie bei einem Funktionsaufruf $\Rightarrow$ template non-type-parameter \alert{(später!)}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{class templates}
+	Grundsätzlich: wie function templates
+	
+	\begin{columns}
+		\column{0.5\textwidth}
+			\begin{lstlisting}
+				template < typename T >
+				class MyRingbuffer {
+				    T* data_member;
+				    T memfun(int);
+				    /* work with T */
+				};
+			\end{lstlisting}
+			
+		\column{0.5\textwidth}
+			\begin{lstlisting}
+				
+				class MyRingbuffer_double {
+				    double* data_member;
+				    double memfun(int);
+				    /* work with double */
+				};
+			\end{lstlisting}
+	\end{columns}
+	
+	\pause
+	\vspace{1em}
+	
+	Gleiche Probleme:
+	\begin{itemize}
+		\item Implizite Instanziierung bei Verwendung (z.B. Deklaration eines »Dinges«)
+		\item Definition in den Header
+		\item member functions entweder \verb|inline| oder die ganze Klasse in einen anonymous namespace ($\implies$ implizit internal linkage)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{intricacies: typename, template, dependent names}
+\end{frame}
