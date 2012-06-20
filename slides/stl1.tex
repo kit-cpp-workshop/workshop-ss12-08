@@ -96,7 +96,9 @@
 
 \begin{frame}[fragile]{Container: \texttt{vector}}
 	\begin{block}{Abbildung: Struktur}
-		TODO: Illustration Vector-Insert
+		\begin{center}
+			\includegraphics[width=0.6\linewidth]{images/vector.pdf}
+		\end{center}
 	\end{block}
 
 	\begin{itemize}
@@ -119,14 +121,16 @@
 	
 \begin{frame}[fragile]{Container: \texttt{list}}
 	\begin{block}{Abbildung: Struktur}
-		TODO: Illustration DLL-Insert
+		\begin{center}
+			\includegraphics[width=0.6\linewidth]{images/list.pdf}
+		\end{center}
 	\end{block}
 
 	\begin{itemize}
 		\item Zugrundeliegende Datenstruktur: Doppelt verlinkte Liste
 		\pause
 		\begin{itemize}
-			\item[-] Schlechte Cache-Effizienz (Container können unzusammenhängend im Speicher liegen)
+			\item[-] Schlechte Cache-Effizienz (nichtkontinuierliche Speicherbelegung)
 			\item[-] Kein Direktzugriff! Über Iteration in $\mathcal{O}(n)$ (!)
 			\pause
 			\item[+] Einfügen/Entfernen ist (bei gegebener Position) sehr schnell: $\mathcal{O}(1)$
@@ -140,7 +144,9 @@
 
 \begin{frame}[fragile]{Container: \texttt{deque}}
 	\begin{block}{Abbildung: Struktur}
-		TODO: Illustration deque
+		\begin{center}
+			\includegraphics[width=0.6\linewidth]{images/deque.pdf}
+		\end{center}
 	\end{block}
 	
 	\begin{itemize}
