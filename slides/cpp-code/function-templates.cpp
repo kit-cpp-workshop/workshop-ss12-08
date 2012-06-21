@@ -14,7 +14,7 @@ template < typename Type >
 template < typename T >    // template-Funktion mit Parameter T
 T                          // return type
 max(T p0, T p1)            // Funktionsname und Parameter
-{ return (p0>p1) ? (p0) : (p1); }  // Definition (Koerper)
+{ return (p0>p1) ? (p0) : (p1); }  // Definition (Körper)
 /*$ max_template_short $*/
 template<typename T> T max(T p0, T p1);
 

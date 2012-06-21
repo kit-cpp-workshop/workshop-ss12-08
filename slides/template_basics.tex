@@ -195,7 +195,7 @@ class MyRingbuffer_MyType;
 \end{frame}
 
 \begin{frame}[fragile]{class templates}
-	Grundsätzlich: wie function templates
+	Grundsätzlich: Wie function templates
 	
 	\begin{columns}
 		\column{0.5\textwidth}
@@ -266,7 +266,7 @@ class MyRingbuffer_MyType;
 	\pause
 	
 	\begin{block}{keyword `template` (Standard, 14.2/4)}
-		Folgt auf ein \verb|.| \verb|->| oder \verb|::| der Name eines templates, so muss vor diesem namen das keyword \verb|template| eingefügt werden (14.2/4).
+		Folgt auf ein \verb|.| \verb|->| oder \verb|::| der Name eines templates, so muss vor diesem Namen das Keyword \verb|template| eingefügt werden (14.2/4).
 		
 		\vspace{-1.5em}
 		\begin{columns}[t]
@@ -287,7 +287,7 @@ class MyRingbuffer_MyType;
 	\alert{Nur innerhalb von template-Definitionen!}
 	
 	\begin{block}{keyword `typename` (Standard, 14.6/2-3)}
-		Wird ein Typ mittels \emph{qualified-id} benannt (= es taucht ein \verb|::| auf), und ist taucht ein template Parameter (auch implizit) auf, so muss vor den ganzen Ausdruck ein \verb|typename| gestellt werden.
+		Wird ein Typ mittels \emph{qualified-id} benannt (mit \verb|::|), und es taucht ein template Parameter (auch implizit) auf, so muss vor den ganzen Ausdruck ein \verb|typename| gestellt werden.
 		
 		\pause
 		\lstinputlisting[linerange=typename-]{cpp-code/template-intricacies.cpp}
