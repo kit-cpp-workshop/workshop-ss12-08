@@ -226,9 +226,41 @@ class MyRingbuffer_MyType;
 	\begin{itemize}
 		\item Implizite Instanziierung bei Verwendung (z.B. Deklaration eines »Dinges«)
 		\item Definition in den Header
-		\item member functions entweder \verb|inline| oder die ganze Klasse in einen anonymous namespace ($\implies$ implizit internal linkage)
+		\item linkage der member functions??
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{intricacies: typename, template, dependent names}
+\begin{frame}[t]{class template member functions}
+	\vspace{-2em}
+	\begin{columns}[t]
+		\column{0.5\textwidth}
+			\onslide*<+> { \lstinputlisting[linerange=inline-anon_namespace]{cpp-code/template-mem-fun.cpp} }
+			\onslide*<+> { \lstinputlisting[linerange=inline-func_decl]{cpp-code/template-mem-fun.cpp} }
+			% Koios: dirty hack to uncover lines within the listing:
+			% 1) introduce a /$$/ at the beginning of the lines in the listing file
+			% 2) use two \lstinputlisting-s
+			% 3) the first \lstinputlisting shall interpret /$ as a delimiter for an invisible LINE comment
+			% 4) the second one shall interpret /$ as the start and $/ as the end delimiter for an invisible two-delimiter comment
+			\lstset{morecomment=[il]/\$}
+			\onslide*<+> { \lstinputlisting[linerange=inline-implicit_inline]{cpp-code/template-mem-fun.cpp} }
+			\lstset{deletecomment=[il]/\$, morecomment=[is]{/\$}{\$/}}
+			\onslide*<+-> { \lstinputlisting[linerange=inline-implicit_inline]{cpp-code/template-mem-fun.cpp} }
+			
+		\column{0.5\textwidth}
+			\onslide*<+-> { \lstinputlisting[linerange=implicit_inline-ctmft]{cpp-code/template-mem-fun.cpp} }
+	\end{columns}
+\end{frame}
+
+\begin{frame}[t]{class template member function templates}
+	\onslide*<+> { \lstinputlisting[linerange=ctmft-ctmft_def]{cpp-code/template-mem-fun.cpp} }
+	\onslide*<+> { \lstinputlisting[linerange=ctmft-]{cpp-code/template-mem-fun.cpp} }
+\end{frame}
+
+\begin{frame}[fragile]{intricacies: typename, template, dependent names}
+	\begin{enumerate}
+		\item Generell eine gute Idee: alles qualifiziert (explizit) hinschreiben, d.h. \verb|mynamespace::MyClass::MyStuff| \\
+		      Bei templates ist dies extrem wichtig!
+		\item Folgt auf ein \verb|.| \verb|->| oder \verb|::| der Name eines templates, so muss vor diesem namen ein \verb|template| eingefügt werden.
+		\item Wird ein Typ mittels \emph{qualified-id} benannt (= es taucht ein \verb|::| auf), so muss vor den ganzen Ausdruck ein \verb|typename| gestellt werden.
+	\end{enumerate}
 \end{frame}
