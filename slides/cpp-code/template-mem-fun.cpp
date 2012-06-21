@@ -12,11 +12,11 @@ namespace /* anonymous */ {
 	};
 }
 /*$ func_decl $*/
-template < typename F >
-/$$/F*
-MyRingbuffer < F > ::
-/$$/memfun(int)
-/$$/{ /* ... */ }
+/$$/template < typename F >
+F*
+/$$/MyRingbuffer < F > ::
+memfun(int)
+{ /* ... */ }
 
 
 /*$ implicit_inline $*/

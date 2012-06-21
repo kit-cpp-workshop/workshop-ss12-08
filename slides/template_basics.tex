@@ -61,11 +61,11 @@ class MyRingbuffer_MyType;
 	
 	\vspace{2em}
 	
-	\onslide*<+> { \lstinputlisting[linerange=begin-max_schablone, commentstyle=\none]{cpp-code/function-templates.cpp} }
-	\lstset{morecomment=[l]template}
-	\onslide*<+> { \lstinputlisting[linerange=begin-max_template, commentstyle=\none]{cpp-code/function-templates.cpp} }
+	\onslide*<+> { \lstinputlisting[linerange=begin-max_schablone]{cpp-code/function-templates.cpp} }
+	\lstset{morecomment=[l][\invisible]template}
+	\onslide*<+> { \lstinputlisting[linerange=begin-max_template]{cpp-code/function-templates.cpp} }
 	\lstset{deletecomment=[l]template}
-	\onslide*<+-> { \lstinputlisting[linerange=begin-max_template, commentstyle=\none]{cpp-code/function-templates.cpp} }
+	\onslide*<+-> { \lstinputlisting[linerange=begin-max_template]{cpp-code/function-templates.cpp} }
 \end{frame}
 
 \begin{frame}[fragile]{Funktions-templates: Syntax}
@@ -241,10 +241,11 @@ class MyRingbuffer_MyType;
 			% 2) use two \lstinputlisting-s
 			% 3) the first \lstinputlisting shall interpret /$ as a delimiter for an invisible LINE comment
 			% 4) the second one shall interpret /$ as the start and $/ as the end delimiter for an invisible two-delimiter comment
-			\lstset{morecomment=[il]/\$}
+			\lstset{morecomment=[l][\invisible]/\$}
 			\onslide*<+> { \lstinputlisting[linerange=inline-implicit_inline]{cpp-code/template-mem-fun.cpp} }
-			\lstset{deletecomment=[il]/\$, morecomment=[is]{/\$}{\$/}}
+			\lstset{deletecomment=[l]/\$, morecomment=[is]{/\$}{\$/}}
 			\onslide*<+-> { \lstinputlisting[linerange=inline-implicit_inline]{cpp-code/template-mem-fun.cpp} }
+			\lstset{deletecomment=[is]{/\$}{\$/}}
 			
 		\column{0.5\textwidth}
 			\onslide*<+-> { \lstinputlisting[linerange=implicit_inline-ctmft]{cpp-code/template-mem-fun.cpp} }
@@ -274,7 +275,7 @@ class MyRingbuffer_MyType;
 				
 			\column{0.525\textwidth}
 				% Koios: again that dirty hack....
-				\lstset{morecomment=[il]/\$}
+				\lstset{morecomment=[l][\invisible]/\$}
 				\onslide*<+> { \lstinputlisting[linerange=template_usage-typename]{cpp-code/template-intricacies.cpp} }
 				\lstset{deletecomment=[il]/\$, morecomment=[is]{/\$}{\$/}}
 				\onslide*<+-> { \lstinputlisting[linerange=template_usage-typename]{cpp-code/template-intricacies.cpp} }
