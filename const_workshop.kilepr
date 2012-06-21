@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.1.0
-lastDocument=
+lastDocument=slides/mutable.tex
 masterDocument=
 name=const_workshop
 pkg_extIsRegExp=false
@@ -27,6 +27,16 @@ Mode=LaTeX
 ReadWrite=true
 
 [document-settings,item:slides/const_pointer.tex]
+Bookmarks=
+Encoding=UTF-8
+FoldedColumns=
+FoldedLines=
+Highlighting=LaTeX
+Indentation Mode=normal
+Mode=LaTeX
+ReadWrite=true
+
+[document-settings,item:slides/mutable.tex]
 Bookmarks=
 Encoding=UTF-8
 FoldedColumns=
@@ -68,13 +78,23 @@ order=1
 
 [item:slides/const_pointer.tex]
 archive=true
-column=32
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=43
+line=33
 mode=LaTeX
 open=true
 order=2
+
+[item:slides/mutable.tex]
+archive=true
+column=12
+encoding=UTF-8
+highlight=LaTeX
+line=61
+mode=LaTeX
+open=true
+order=4
 
 [item:slides/praxis.tex]
 archive=true
@@ -113,8 +133,14 @@ JumpList=
 ViMarks=
 
 [view-settings,view=0,item:slides/const_pointer.tex]
-CursorColumn=32
-CursorLine=43
+CursorColumn=0
+CursorLine=33
+JumpList=
+ViMarks=
+
+[view-settings,view=0,item:slides/mutable.tex]
+CursorColumn=12
+CursorLine=61
 JumpList=
 ViMarks=
 

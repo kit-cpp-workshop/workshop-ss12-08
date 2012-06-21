@@ -30,7 +30,8 @@
 
 % inserted by Koios to hide comments in lstlistings
 \newcommand{\none}[1]{}
-\lstset{language=C++, basicstyle=\footnotesize, numbers=left, numberstyle=\tiny\color{gray}, tabsize=6, xleftmargin=2em, rangeprefix=/*$\ , rangesuffix=\ $*/, includerangemarker=false}
+
+\lstset{language=C++, basicstyle=\footnotesize, numbers=left, numberstyle=\tiny\color{gray}, tabsize=4, xleftmargin=2em, rangeprefix=/*$\ , rangesuffix=\ $*/, includerangemarker=false, morecomment=[is]{/*$}{$*/}}
 
 %% TITLE PICTURE
 
@@ -62,8 +63,8 @@
 % the presentation starts here
 
 \title[C++ Workshop]{C++ Workshop}
-\subtitle{XY. Block, DD.MM.2012}
-\author{Oliver Schneider}
+\subtitle{08. Block, 22.06.2012}
+\author{Markus Jung, Oliver Schneider, Robert Schneider}
 
 \institute{}
 
@@ -96,6 +97,12 @@
 \include{const_pointer}
 \include{const_class}
 \include{mutable}
+
+\include{template_basics}
+
+\include{komplexitaet}
+\include{stl1}
+
 \include{praxis}
 
 \end{document}
