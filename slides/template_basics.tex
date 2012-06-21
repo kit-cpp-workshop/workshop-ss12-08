@@ -256,11 +256,39 @@ class MyRingbuffer_MyType;
 	\onslide*<+> { \lstinputlisting[linerange=ctmft-]{cpp-code/template-mem-fun.cpp} }
 \end{frame}
 
-\begin{frame}[fragile]{intricacies: typename, template, dependent names}
-	\begin{enumerate}
-		\item Generell eine gute Idee: alles qualifiziert (explizit) hinschreiben, d.h. \verb|mynamespace::MyClass::MyStuff| \\
-		      Bei templates ist dies extrem wichtig!
-		\item Folgt auf ein \verb|.| \verb|->| oder \verb|::| der Name eines templates, so muss vor diesem namen ein \verb|template| eingefügt werden.
-		\item Wird ein Typ mittels \emph{qualified-id} benannt (= es taucht ein \verb|::| auf), so muss vor den ganzen Ausdruck ein \verb|typename| gestellt werden.
-	\end{enumerate}
+\begin{frame}[t, fragile]{intricacies: qualified-id, template}
+	\begin{block}{unqualified name lookup = weird}
+		Generell eine gute Idee: alles qualifiziert (explizit) hinschreiben, z.B. \verb|mynamespace::MyClass::MyStuff| \\
+		Bei templates ist dies extrem wichtig!
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{keyword `template` (Standard, 14.2/4)}
+		Folgt auf ein \verb|.| \verb|->| oder \verb|::| der Name eines templates, so muss vor diesem namen das keyword \verb|template| eingefügt werden (14.2/4).
+		
+		\vspace{-1.5em}
+		\begin{columns}[t]
+			\column{0.475\textwidth}
+				\uncover<+-> { \lstinputlisting[linerange=template-template_usage]{cpp-code/template-intricacies.cpp} }
+				
+			\column{0.525\textwidth}
+				% Koios: again that dirty hack....
+				\lstset{morecomment=[il]/\$}
+				\onslide*<+> { \lstinputlisting[linerange=template_usage-typename]{cpp-code/template-intricacies.cpp} }
+				\lstset{deletecomment=[il]/\$, morecomment=[is]{/\$}{\$/}}
+				\onslide*<+-> { \lstinputlisting[linerange=template_usage-typename]{cpp-code/template-intricacies.cpp} }
+		\end{columns}
+	\end{block}
+\end{frame}
+
+\begin{frame}[t, fragile]{intricacies: dependent names, typename}
+	\alert{Nur innerhalb von template-Definitionen!}
+	
+	\begin{block}{keyword `typename` (Standard, 14.6/2-3)}
+		Wird ein Typ mittels \emph{qualified-id} benannt (= es taucht ein \verb|::| auf), und ist taucht ein template Parameter (auch implizit) auf, so muss vor den ganzen Ausdruck ein \verb|typename| gestellt werden.
+		
+		\pause
+		\lstinputlisting[linerange=typename-]{cpp-code/template-intricacies.cpp}
+	\end{block}
 \end{frame}
