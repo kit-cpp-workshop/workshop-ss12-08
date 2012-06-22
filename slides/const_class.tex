@@ -1,4 +1,5 @@
 
+\subsection{const class}
 \begin{frame}[fragile]{const member funktionen}
 
 \begin{block}{const als Absicherung}
@@ -34,3 +35,30 @@ void myfun()
 \end{block}
 
 \end{frame}
+
+
+\begin{frame}[fragile]{const overloading}
+
+\begin{block}{const overloading}
+\begin{small}
+	\begin{lstlisting}[language=C++]
+class MyClass
+{
+private:
+  int * m_iBlub;
+public:
+  // sinnvoller overload
+  const int * get() const {return m_iBlub; }
+  int * get() {return m_iBlub; }
+  
+  // rueckgabewert kann frei gewaehlt werden
+  // sinnhaftigkeit ist allerdings fragwuerdig
+  string seltsam() { return "blubber"; }
+  double*** seltsam() const { return NULL; }
+};
+	\end{lstlisting}
+	\end{small}
+\end{block}
+
+\end{frame}
+
