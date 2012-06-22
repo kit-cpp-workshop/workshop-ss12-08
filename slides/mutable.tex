@@ -9,17 +9,18 @@
 class MyClass
 {
 private:
-  mutable unsigned int m_uCounter;
+    mutable unsigned int m_uCounter;
 public:
-  unsigned int getCounter() const
-  {
-    return this->m_uCounter;
-  }
-  int compute(int value) const
-  {
-    m_uCounter++;
-    return value*42;
-  }
+    unsigned int getCounter() const
+    {
+        return this->m_uCounter;
+    }
+    
+    int compute(int value) const
+    {
+      m_uCounter++;
+      return value*42;
+    }
 };
 	\end{lstlisting}
 	\end{small}
@@ -36,10 +37,11 @@ public:
 	\begin{lstlisting}[language=C++]
 MyClass test;
 const MyClass& const_test = test;
-std::cout << test.compute(1) << std::endl;
-std::cout << test.compute(-3) << std::endl;
+
+std::cout << test.compute(1)        << std::endl;
+std::cout << test.compute(-3)       << std::endl;
 std::cout << const_test.compute(-5) << std::endl;
-std::cout << test.getCounter() << std::endl; // gibt 3 aus
+std::cout << test.getCounter()      << std::endl; // gibt 3 aus
 	\end{lstlisting}
 	\end{small}
 \end{block}
@@ -53,9 +55,9 @@ std::cout << test.getCounter() << std::endl; // gibt 3 aus
 	\begin{lstlisting}[language=C++]
 void bad_function(const int& const_ref)
 {
-  const_ref++; // kompiliert nicht
-  int& ref = const_cast<int&>(const_ref);
-  ref++; // kompiliert
+    const_ref++; // kompiliert nicht
+    int& ref = const_cast<int&>(const_ref);
+    ref++;       // kompiliert
 }
 
 int original = 5;
