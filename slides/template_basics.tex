@@ -61,11 +61,11 @@ class MyRingbuffer_MyType;
 	
 	\vspace{2em}
 	
-	\onslide*<+> { \lstinputlisting[linerange=begin-max_schablone, commentstyle=\none]{cpp-code/function-templates.cpp} }
-	\lstset{morecomment=[l]template}
-	\onslide*<+> { \lstinputlisting[linerange=begin-max_template, commentstyle=\none]{cpp-code/function-templates.cpp} }
+	\onslide*<+> { \lstinputlisting[linerange=begin-max_schablone]{cpp-code/function-templates.cpp} }
+	\lstset{morecomment=[l][\invisible]template}
+	\onslide*<+> { \lstinputlisting[linerange=begin-max_template]{cpp-code/function-templates.cpp} }
 	\lstset{deletecomment=[l]template}
-	\onslide*<+-> { \lstinputlisting[linerange=begin-max_template, commentstyle=\none]{cpp-code/function-templates.cpp} }
+	\onslide*<+-> { \lstinputlisting[linerange=begin-max_template]{cpp-code/function-templates.cpp} }
 \end{frame}
 
 \begin{frame}[fragile]{Funktions-templates: Syntax}
@@ -195,7 +195,7 @@ class MyRingbuffer_MyType;
 \end{frame}
 
 \begin{frame}[fragile]{class templates}
-	Grundsätzlich: wie function templates
+	Grundsätzlich: Wie function templates
 	
 	\begin{columns}
 		\column{0.5\textwidth}
@@ -226,9 +226,70 @@ class MyRingbuffer_MyType;
 	\begin{itemize}
 		\item Implizite Instanziierung bei Verwendung (z.B. Deklaration eines »Dinges«)
 		\item Definition in den Header
-		\item member functions entweder \verb|inline| oder die ganze Klasse in einen anonymous namespace ($\implies$ implizit internal linkage)
+		\item linkage der member functions??
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{intricacies: typename, template, dependent names}
+\begin{frame}[t]{class template member functions}
+	\vspace{-2em}
+	\begin{columns}[t]
+		\column{0.5\textwidth}
+			\onslide*<+> { \lstinputlisting[linerange=inline-anon_namespace]{cpp-code/template-mem-fun.cpp} }
+			\onslide*<+> { \lstinputlisting[linerange=inline-func_decl]{cpp-code/template-mem-fun.cpp} }
+			% Koios: dirty hack to uncover lines within the listing:
+			% 1) introduce a /$$/ at the beginning of the lines in the listing file
+			% 2) use two \lstinputlisting-s
+			% 3) the first \lstinputlisting shall interpret /$ as a delimiter for an invisible LINE comment
+			% 4) the second one shall interpret /$ as the start and $/ as the end delimiter for an invisible two-delimiter comment
+			\lstset{morecomment=[l][\invisible]/\$}
+			\onslide*<+> { \lstinputlisting[linerange=inline-implicit_inline]{cpp-code/template-mem-fun.cpp} }
+			\lstset{deletecomment=[l]/\$, morecomment=[is]{/\$}{\$/}}
+			\onslide*<+-> { \lstinputlisting[linerange=inline-implicit_inline]{cpp-code/template-mem-fun.cpp} }
+			\lstset{deletecomment=[is]{/\$}{\$/}}
+			
+		\column{0.5\textwidth}
+			\onslide*<+-> { \lstinputlisting[linerange=implicit_inline-ctmft]{cpp-code/template-mem-fun.cpp} }
+	\end{columns}
+\end{frame}
+
+\begin{frame}[t]{class template member function templates}
+	\onslide*<+> { \lstinputlisting[linerange=ctmft-ctmft_def]{cpp-code/template-mem-fun.cpp} }
+	\onslide*<+> { \lstinputlisting[linerange=ctmft-]{cpp-code/template-mem-fun.cpp} }
+\end{frame}
+
+\begin{frame}[t, fragile]{intricacies: qualified-id, template}
+	\begin{block}{unqualified name lookup = weird}
+		Generell eine gute Idee: alles qualifiziert (explizit) hinschreiben, z.B. \verb|mynamespace::MyClass::MyStuff| \\
+		Bei templates ist dies extrem wichtig!
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{keyword \texttt{template} (Standard, 14.2/4)}
+		Folgt auf ein \verb|.| \verb|->| oder \verb|::| der Name eines templates, so muss vor diesem Namen das Keyword \verb|template| eingefügt werden (14.2/4).
+		
+		\vspace{-1.5em}
+		\begin{columns}[t]
+			\column{0.475\textwidth}
+				\uncover<+-> { \lstinputlisting[linerange=template-template_usage]{cpp-code/template-intricacies.cpp} }
+				
+			\column{0.525\textwidth}
+				% Koios: again that dirty hack....
+				\lstset{morecomment=[l][\invisible]/\$}
+				\onslide*<+> { \lstinputlisting[linerange=template_usage-typename]{cpp-code/template-intricacies.cpp} }
+				\lstset{deletecomment=[il]/\$, morecomment=[is]{/\$}{\$/}}
+				\onslide*<+-> { \lstinputlisting[linerange=template_usage-typename]{cpp-code/template-intricacies.cpp} }
+		\end{columns}
+	\end{block}
+\end{frame}
+
+\begin{frame}[t, fragile]{intricacies: dependent names, typename}
+	\alert{Nur innerhalb von template-Definitionen!}
+	
+	\begin{block}{keyword \texttt{typename} (Standard, 14.6/2-3)}
+		Wird ein Typ mittels \emph{qualified-id} benannt (mit \verb|::|), und es taucht ein template Parameter (auch implizit) auf, so muss vor den ganzen Ausdruck ein \verb|typename| gestellt werden.
+		
+		\pause
+		\lstinputlisting[linerange=typename-]{cpp-code/template-intricacies.cpp}
+	\end{block}
 \end{frame}

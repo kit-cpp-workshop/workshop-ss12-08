@@ -1,4 +1,4 @@
-﻿/*$ begin $*/
+/*$ begin $*/
    int max(int p0, int p1) { return (p0>p1) ? (p0) : (p1); }
  short max(short, short)   { return (p0>p1) ? (p0) : (p1); }
 double max(double, double) { return (p0>p1) ? (p0) : (p1); }
@@ -11,7 +11,7 @@ template < typename Type >
 
 
 /*$ max_template $*/
-template < typename T >    // template-Funktion mit Parameter T
+template < typename T >    // template mit Typ-Parameter T
 T                          // return type
 max(T p0, T p1)            // Funktionsname und Parameter
 { return (p0>p1) ? (p0) : (p1); }  // Definition (Koerper)
