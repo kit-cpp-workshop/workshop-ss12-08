@@ -6,7 +6,7 @@ Im 8. Workshop geht es um:
 
  - "const correctness"
  - Templates
- - Algorithmische Komplexitätstheorie
+ - O-Kalkül
  - Die STL-Datenstrukturen `vector` und `list` sowie Iteratoren
 
 ### Folien zum Vortrag
@@ -15,7 +15,13 @@ Die Vortragsfolien stehen als [PDF](https://github.com/downloads/kit-cpp-worksho
 
 ### Screencast
 
-Ein Screencast des Vortrags wird nach dem Workshop an dieser Stelle verlinkt.
+Eine Aufzeichnung des Vortrages steht zum [Download](http://ubuntuone.com/6KZeW12EOQWRX2wUHjNfqX) bereit.
+
+ * ab 00:00 const correctness
+ * ab 15:38 Templates
+ * ab 35:30 O-Kalkül
+ * ab 41:02 STL und STL sequence container
+ * ab 57:07 Vorstellung der Praxisaufgaben
 
 ## Aufgaben
 
