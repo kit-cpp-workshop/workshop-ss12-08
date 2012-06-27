@@ -5,19 +5,17 @@ using namespace std;
 class Ringpuffer {
 public:
 	bool push(double newelement);
-	double pop();
-	double element(int number);
+	double pop() const;
+	double element(int number) const;
 	Ringpuffer(int size);
 	~Ringpuffer();
 
 private:
 	int NumberOfElements;
-	int ElementsInUse;
+	mutable int ElementsInUse;
 	double* ptr;
-	double* pushptr;
-	double* popptr;
-	double* lastptr;
-
+	mutable double* pushptr;
+	mutable double* popptr;
 };
 
 
@@ -46,13 +44,11 @@ bool Ringpuffer::push(double newelement)
 		pushptr++; //Weiterspringen falls nicht am Ende
 	}
 
-
-
 	ElementsInUse++; //Erhöhe Zahl der Elemente
 	return 1;
 }
 
-double Ringpuffer::pop()
+double Ringpuffer::pop() const
 {
 	if (ElementsInUse==0)
 	{
@@ -75,7 +71,7 @@ double Ringpuffer::pop()
 }
 
 
-double Ringpuffer::element(int number)
+double Ringpuffer::element(int number) const
 {
 	if ((number<0)||(number>=NumberOfElements))
 	{
