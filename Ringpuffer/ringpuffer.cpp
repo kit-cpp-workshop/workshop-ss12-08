@@ -5,17 +5,17 @@ using namespace std;
 class Ringpuffer {
 public:
 	bool push(double newelement);
-	double pop() const;
+	double pop();
 	double element(int number) const;
 	Ringpuffer(int size);
 	~Ringpuffer();
 
 private:
 	int NumberOfElements;
-	mutable int ElementsInUse;
+	int ElementsInUse;
 	double* ptr;
-	mutable double* pushptr;
-	mutable double* popptr;
+	double* pushptr;
+	double* popptr;
 };
 
 
@@ -48,7 +48,7 @@ bool Ringpuffer::push(double newelement)
 	return 1;
 }
 
-double Ringpuffer::pop() const
+double Ringpuffer::pop()
 {
 	if (ElementsInUse==0)
 	{
